@@ -20,7 +20,7 @@ function init() {
         displayBlock.classList.add('hide');
    
         if (count < 9) {
-            count++;
+            ++count;
             previous.classList.remove('ends');
         } else {
             next.classList.add('ends');
@@ -41,7 +41,7 @@ function init() {
                             birthYear = document.querySelector('#birth-year'),
                             homeworld = document.querySelector('#planet'),
                             filmsTitles = document.querySelector('#films'),
-                            species = document.querySelector('#species');
+                            heroesPlanet = document.querySelector('#species');
                         
                         hero.classList.add('display-hero');
 
@@ -52,11 +52,11 @@ function init() {
                                 gender.innerHTML = data.results[j].gender;
                                 birthYear.innerHTML = data.results[j].birth_year;
                                 
-                                var dom = data.results[j].homeworld;
-                                var arrayLinkPlanet = dom.split(':');
+                                var home = data.results[j].homeworld;
+                                var arrayLinkPlanet = home.split(':');
                                 arrayLinkPlanet.splice(1, 0, 's:');
                                 var linkPlanet = arrayLinkPlanet.join('');
-                                console.log(linkPlanet)
+
                                 fetch(linkPlanet)
                                     .then(function (home) {
                                         return home.json();
@@ -65,16 +65,22 @@ function init() {
                                         homeworld.innerHTML = planet.name;
                                     })
 
-                                // if (data.results[j].species.length > 0){
-                                //     fetch(data.results[j].species[0])
-                                //     .then(function (view) {
-                                //             return view.json()
-                                //     }).then(function (kind) {
-                                //         species.innerHTML = kind.name;
-                                //     })
-                                // } else {
-                                //     species.innerHTML = 'unknown';
-                                // }
+                                if (data.results[j].species.length > 0){
+                                    var spec = data.results[j].species[0];
+                                    console.log(spec)
+                                    var arrrayLinkSpecies = spec.split(':');
+                                    arrrayLinkSpecies.splice(1, 0, 's:');
+                                    var linkSpecies = arrrayLinkSpecies.join('');
+
+                                    fetch(linkSpecies)
+                                    .then(function (view) {
+                                            return view.json()
+                                    }).then(function (kind) {
+                                        heroesPlanet.innerHTML = kind.name;
+                                    })
+                                } else {
+                                    heroesPlanet.innerHTML = 'unknown';
+                                }
 
                                 // for(var k = 0; k < data.results[j].films.length; k++) {
                                 //     fetch(data.results[j].films[k])
@@ -100,7 +106,7 @@ function init() {
     }
 
     function previousPage() {
-            if (count >= 1) {
+            if (count > 1) {
                 next.classList.remove('ends');
                 --count;
             } else {
