@@ -8,19 +8,13 @@
     <title>Start wars</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-
-
-
 </head>
 
 <body>
     <div class="container">
         <div class="block-left">
             <table class="hero">
-                
-                <caption id="name">
-                    
-                </caption>
+                <caption id="name"></caption>
                 <tr>
                     <td>Gender <button id="close">&#10006;</button></td>
                     <td id="gender"></td>
@@ -44,6 +38,10 @@
             </table>
         </div>
         <div class="block-right">
+            <div class="pagination">
+                <button id="previous">&lArr;</button>
+                <button id="next"><span>Show heroes</span>	&rArr;</button>
+            </div>
             <div class="show-heroes show-heroes-hidden" id="sh">
                 <button class="show-person"></button>
                 <button class="show-person"></button>
@@ -56,14 +54,7 @@
                 <button class="show-person"></button>
                 <button class="show-person"></button>
             </div>
-            <div class="pagination"></div>
-                <button id="previous">&lArr;</button>
-                <button id="next"><span>Show heroes</span>	&rArr;</button>
-                <!-- <input type="button"  id="previous" value="&lArr;">
-                <input type="button" id="next" value="Show"> -->
-            </div>
         </div>
-        
     </div>
 </body>
 

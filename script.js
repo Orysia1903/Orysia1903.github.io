@@ -16,7 +16,8 @@ function init() {
         var displayBlock = document.querySelector('.show-heroes'),
             url = `https://swapi.dev/api/people/?page=${count}`;
 
-        displayBlock.classList.remove('show-heroes-hidden')
+        displayBlock.classList.remove('show-heroes-hidden');
+        displayBlock.classList.add('hide') 
    
         if (count < 9) {
             count++
