@@ -54,10 +54,10 @@ function init() {
                                 
                                 var dom = data.results[j].homeworld;
                                 var arrayLinkPlanet = dom.split(':');
-                                arrayLinkPlanet.splice(1, 0, 's');
-                                arrayLinkPlanet.join('');
-
-                                fetch(arrayLinkPlanet)
+                                arrayLinkPlanet.splice(1, 0, 's:');
+                                var linkPlanet = arrayLinkPlanet.join('');
+                                console.log(linkPlanet)
+                                fetch(linkPlanet)
                                     .then(function (home) {
                                         return home.json();
                                     }).then(function (planet) {
