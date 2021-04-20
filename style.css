@@ -51,7 +51,7 @@
 #next:hover,
 #previous:hover {
     transform: scale(1.05,1.05);
-    text-shadow: 2px 3px 4px rgb(112, 5, 112);
+    text-shadow: 4px 6px 8px rgb(255, 184, 255);
 }
 .show-heroes {
     display: flex;
