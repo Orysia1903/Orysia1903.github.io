@@ -14,7 +14,7 @@ function init() {
 
     function nextPage() {
         var displayBlock = document.querySelector('.show-heroes'),
-            url = `http://swapi.dev/api/people/?page=${count}`;
+            url = `https://swapi.dev/api/people/?page=${count}`;
 
         displayBlock.classList.remove('show-heroes-hidden');
         displayBlock.classList.add('hide');
@@ -52,12 +52,12 @@ function init() {
                                 gender.innerHTML = data.results[j].gender;
                                 birthYear.innerHTML = data.results[j].birth_year;
                                 
-                                // var dom = data.results[j].homeworld;
-                                // var arrayLinkPlanet = dom.split(':');
-                                // arrayLinkPlanet.splice(1, 0, 's:');
-                                // var linkPlanet = arrayLinkPlanet.join('');
-                                // console.log(linkPlanet)
-                                fetch(data.results[j].homeworld)
+                                var dom = data.results[j].homeworld;
+                                var arrayLinkPlanet = dom.split(':');
+                                arrayLinkPlanet.splice(1, 0, 's:');
+                                var linkPlanet = arrayLinkPlanet.join('');
+                                console.log(linkPlanet)
+                                fetch(linkPlanet)
                                     .then(function (home) {
                                         return home.json();
                                     }).then(function (planet) {
