@@ -82,17 +82,19 @@ function init() {
                                         heroesPlanet.innerHTML = 'unknown';
                                     }
 
-                                    for(var k = 0; k < data.results[j].films.length; k++) {
-                                        var b = data.results[j].films
-                                        b.forEach(
-                                            function(element){
-                                                var arrayLinkFilm = element.split(':');
-                                                arrayLinkFilm.splice(1, 0, 's:');
-                                                var linkFilm = arrayLinkFilm.join('');
-                                                console.log(linkFilm)
-                                            }
-                                        )
-                                        fetch(b[k])
+                                    var linkFilm = data.results[j].films
+                                    linkFilm.forEach(
+                                        function(element){
+                                            var arrayLinkFilm = element.split(':');
+                                            arrayLinkFilm.splice(1, 0, 's:');
+                                            var linkFilm = arrayLinkFilm.join('');
+                                            console.log(linkFilm)
+                                        }
+                                    )
+
+                                    for(var k = 0; k < linkFilm.length; k++) {
+            
+                                        fetch(linkFilm[k])
                                             .then(function (response) {
                                                 return response.json()
                                                 }).then(function (films) {
