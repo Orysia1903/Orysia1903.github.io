@@ -83,7 +83,8 @@ function init() {
                                     }
 
                                     for(var k = 0; k < data.results[j].films.length; k++) {
-                                        data.results[j].films.forEach(
+                                        var b = data.results[j].films
+                                        b.forEach(
                                             function(element){
                                                 var arrayLinkFilm = element.split(':');
                                                 arrayLinkFilm.splice(1, 0, 's:');
@@ -91,7 +92,7 @@ function init() {
                                                 console.log(linkFilm)
                                             }
                                         )
-                                        fetch(data.results[j].films[k])
+                                        fetch(b[k])
                                             .then(function (response) {
                                                 return response.json()
                                                 }).then(function (films) {
