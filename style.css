@@ -102,9 +102,9 @@ caption {
     transform: translateX(-700px);
     width: 350px;
     height: 60vh;
-    position: relative;
+    position: absolute;
     top: 50px;
-    left: 110px
+    left: 110px;
 }
 .hero tr td,
 caption {
