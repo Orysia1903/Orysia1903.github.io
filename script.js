@@ -44,7 +44,7 @@ function init() {
                                 filmsTitles = document.querySelector('#films'),
                                 heroesPlanet = document.querySelector('#species');
                             
-                            filmsTitles.innerHTML = '' 
+                            filmsTitles.innerHTML = '';
                             hero.classList.add('display-hero');
 
                             name.innerHTML = target.innerHTML;
@@ -74,7 +74,7 @@ function init() {
 
                                         fetch(linkSpecies)
                                             .then(function (view) {
-                                                return view.json()
+                                                return view.json();
                                                 }).then(function (kind) {
                                                     heroesPlanet.innerHTML = kind.name;
                                         })
@@ -82,28 +82,15 @@ function init() {
                                         heroesPlanet.innerHTML = 'unknown';
                                     }
 
-                                    var linkFilm = data.results[j].films
-                                    linkFilm.forEach(
-                                        function(element){
-                                            var arrayLinkFilm = element.split(':');
-                                            arrayLinkFilm.splice(1, 0, 's:');
-                                            var linkFilm = arrayLinkFilm.join('');
-                                            console.log(linkFilm)
-                                        }
-                                    )
-
-                                    for(var k = 0; k < linkFilm.length; k++) {
-            
-                                        fetch(linkFilm[k])
+                                    for(var k = 0; k < data.results[j].films.length; k++) {
+                                        fetch(data.results[j].films[k])
                                             .then(function (response) {
-                                                return response.json()
+                                                return response.json();
                                                 }).then(function (films) {
-                                            filmsTitles.innerHTML += `${films.title}; <br>`
-                                            
+                                            filmsTitles.innerHTML += `${films.title}; <br>`;
                                         })
                                     }
 
-    
                                 }
                             }
                         }
