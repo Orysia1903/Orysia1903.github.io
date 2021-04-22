@@ -17,7 +17,6 @@ init = () => {
    
         if (count < 9) {
             ++count;
-            previous.classList.remove('ends');
         } else {
             next.classList.add('ends');
         }
@@ -98,6 +97,10 @@ init = () => {
                     }).catch( (err) => {
                         console.error(err)
                     });
+
+        if (count == 3) {
+            previous.classList.remove('ends')
+        }
     }
 
     hideHero = () => {
@@ -111,10 +114,6 @@ init = () => {
             --count;
         } 
 
-        if(count == 1){
-            previous.classList.add('ends');
-        }
-
         url = `https://swapi.dev/api/people/?page=${count}`;
         fetch(url)
             .then( (resp) => {
@@ -124,6 +123,10 @@ init = () => {
                         showPerson[i].innerHTML = data.results[i].name;
                     }
             })
+
+        if(count == 1){
+            previous.classList.add('ends');
+        }
     }
 
     next.addEventListener('click', nextPage);
