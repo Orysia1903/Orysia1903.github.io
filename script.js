@@ -82,14 +82,44 @@ function init() {
                                         heroesPlanet.innerHTML = 'unknown';
                                     }
 
-                                    for(var k = 0; k < data.results[j].films.length; k++) {
-                                        fetch(data.results[j].films[k])
-                                            .then(function (response) {
-                                                return response.json();
-                                                }).then(function (films) {
-                                            filmsTitles.innerHTML += `${films.title}; <br>`;
-                                        })
-                                    }
+                                    // for(var k = 0; k < data.results[j].films.length; k++) {
+                                    //     fetch(data.results[j].films[k])
+                                    //         .then(function (response) {
+                                    //             return response.json();
+                                    //             }).then(function (films) {
+                                    //         filmsTitles.innerHTML += `${films.title}; <br>`;
+                                    //     })
+                                    // }
+                                    var film = data.results[j].films;
+                                    for(var s = 0; s<film.length; s++){
+                                    // if(film[0]){
+                                        var arrayFilmPlanet = film[s].split(':');
+                                        arrayFilmPlanet.splice(1, 0, 's:');
+                                        var linkFilm = arrayFilmPlanet.join('');
+                                        console.log(linkFilm)
+                                        fetch(linkFilm)
+                                            .then((first)=>{
+                                                return first.json();
+                                            }).then(function (firstFilm){
+                                                console.log(firstFilm.title)
+                                                filmsTitles.innerHTML += `${firstFilm.title}; <br>`;
+                                            })
+                                    // }
+                                }
+
+                                    // if(film[1]){
+                                    //     var arrayFilmPlanet = film[1].split(':');
+                                    //     arrayFilmPlanet.splice(1, 0, 's:');
+                                    //     var linkFilm = arrayFilmPlanet.join('');
+                                    //     console.log(linkFilm)
+                                    //     fetch(linkFilm)
+                                    //         .then((first)=>{
+                                    //             return first.json();
+                                    //         }).then(function (firstFilm){
+                                    //             console.log(firstFilm.title)
+                                    //             filmsTitles.innerHTML += `${firstFilm.title}; <br>`;
+                                    //         })
+                                    // }
 
                                 }
                             }
