@@ -1,19 +1,15 @@
-window.addEventListener('load', init)
-function init() {
+init = () => {
 
-    var showPerson = document.querySelectorAll('.show-person');
+    let showPerson = document.querySelectorAll('.show-person');
         next = document.querySelector('#next'),
         previous = document.querySelector('#previous'),
         count = 1,
         hide = document.querySelector('#close'),
+        next = document.querySelector('#next'),
         hero = document.querySelector('.hero');
 
-    next.addEventListener('click', nextPage);
-    previous.addEventListener('click', previousPage);
-    hide.addEventListener('click', hideHero);
-
-    function nextPage() {
-        var displayBlock = document.querySelector('.show-heroes'),
+    nextPage = () => {
+        let displayBlock = document.querySelector('.show-heroes'),
             url = `https://swapi.dev/api/people/?page=${count}`;
 
         displayBlock.classList.remove('show-heroes-hidden');
@@ -27,115 +23,89 @@ function init() {
         }
         
         fetch(url)
-            .then(function (resp) {
+            .then( (resp) => {
                 return resp.json();
-                }).then(function (data) {
-                    for (var i = 0; i < data.results.length; i++) {
+                }).then( (data) => {
+                    for (let i = 0; i < data.results.length; i++) {
                         showPerson[i].innerHTML = data.results[i].name;
-                        showPerson[i].addEventListener('click', showPersons);
-
-                        function showPersons() {
+                        
+                        showPersons = () => {
                     
-                            var target = event.target,
+                            let target = event.target,
                                 name = document.querySelector('#name'),
                                 gender = document.querySelector('#gender'),
                                 birthYear = document.querySelector('#birth-year'),
                                 homeworld = document.querySelector('#planet'),
                                 filmsTitles = document.querySelector('#films'),
                                 heroesPlanet = document.querySelector('#species');
+                                
                             
                             filmsTitles.innerHTML = '';
                             hero.classList.add('display-hero');
 
                             name.innerHTML = target.innerHTML;
-                            for (var j = 0; j < data.results.length; j++) {
+                            for (let j = 0; j < data.results.length; j++) {
+                                let film = data.results[j].films;
 
                                 if (target.innerHTML == data.results[j].name) {
                                     gender.innerHTML = data.results[j].gender;
                                     birthYear.innerHTML = data.results[j].birth_year;
                                     
-                                    var home = data.results[j].homeworld;
-                                    var arrayLinkPlanet = home.split(':');
+                                    let home = data.results[j].homeworld;
+                                    let arrayLinkPlanet = home.split(':');
                                     arrayLinkPlanet.splice(1, 0, 's:');
-                                    var linkPlanet = arrayLinkPlanet.join('');
+                                    let linkPlanet = arrayLinkPlanet.join('');
 
                                     fetch(linkPlanet)
-                                        .then(function (home) {
+                                        .then( (home) => {
                                             return home.json();
-                                            }).then(function (planet) {
+                                            }).then( (planet) => {
                                                 homeworld.innerHTML = planet.name;
                                     })
 
-                                    if (data.results[j].species.length > 0){
-                                        var spec = data.results[j].species[0];
-                                        var arrrayLinkSpecies = spec.split(':');
+                                    if (data.results[j].species.length > 0) {
+                                        let spec = data.results[j].species[0];
+                                        let arrrayLinkSpecies = spec.split(':');
                                         arrrayLinkSpecies.splice(1, 0, 's:');
-                                        var linkSpecies = arrrayLinkSpecies.join('');
+                                        let linkSpecies = arrrayLinkSpecies.join('');
 
                                         fetch(linkSpecies)
-                                            .then(function (view) {
+                                            .then( (view) => {
                                                 return view.json();
-                                                }).then(function (kind) {
-                                                    heroesPlanet.innerHTML = kind.name;
+                                                    }).then( (kind) => {
+                                                        heroesPlanet.innerHTML = kind.name;
                                         })
                                     } else {
                                         heroesPlanet.innerHTML = 'unknown';
                                     }
 
-                                    // for(var k = 0; k < data.results[j].films.length; k++) {
-                                    //     fetch(data.results[j].films[k])
-                                    //         .then(function (response) {
-                                    //             return response.json();
-                                    //             }).then(function (films) {
-                                    //         filmsTitles.innerHTML += `${films.title}; <br>`;
-                                    //     })
-                                    // }
-                                    var film = data.results[j].films;
-                                    for(var s = 0; s<film.length; s++){
-                                    // if(film[0]){
-                                        var arrayFilmPlanet = film[s].split(':');
+                                    for(let s = 0; s < film.length; s++) {
+                                        let arrayFilmPlanet = film[s].split(':');
                                         arrayFilmPlanet.splice(1, 0, 's:');
-                                        var linkFilm = arrayFilmPlanet.join('');
-                                        console.log(linkFilm)
+                                        let linkFilm = arrayFilmPlanet.join('');
                                         fetch(linkFilm)
-                                            .then((first)=>{
+                                            .then( (first) => {
                                                 return first.json();
-                                            }).then(function (firstFilm){
-                                                console.log(firstFilm.title)
-                                                filmsTitles.innerHTML += `${firstFilm.title}; <br>`;
+                                                    }).then( (firstFilm) => {
+                                                        filmsTitles.innerHTML += `${firstFilm.title}; <br>`;
                                             })
-                                    // }
-                                }
-
-                                    // if(film[1]){
-                                    //     var arrayFilmPlanet = film[1].split(':');
-                                    //     arrayFilmPlanet.splice(1, 0, 's:');
-                                    //     var linkFilm = arrayFilmPlanet.join('');
-                                    //     console.log(linkFilm)
-                                    //     fetch(linkFilm)
-                                    //         .then((first)=>{
-                                    //             return first.json();
-                                    //         }).then(function (firstFilm){
-                                    //             console.log(firstFilm.title)
-                                    //             filmsTitles.innerHTML += `${firstFilm.title}; <br>`;
-                                    //         })
-                                    // }
-
+                                    }
                                 }
                             }
                         }
+                        showPerson[i].addEventListener('click', showPersons);
                     }
-                    }).catch(function (err) {
+                    }).catch( (err) => {
                         console.error(err)
                     });
     }
 
-    function hideHero(){
+    hideHero = () => {
         hero.classList.remove('display-hero');
         hero.classList.add('hide');
     }
 
-    function previousPage() {
+    previousPage = () => {
             if (count > 1) {
                 next.classList.remove('ends');
                 --count;
@@ -144,12 +114,21 @@ function init() {
             }
         url = `https://swapi.dev/api/people/?page=${count}`;
         fetch(url)
-            .then(function (resp) {
+            .then( (resp) => {
                 return resp.json();
-            }).then(function (data) {
-                for (var i = 0; i < data.results.length; i++) {
+            }).then( (data) => {
+                for (let i = 0; i < data.results.length; i++) {
                     showPerson[i].innerHTML = data.results[i].name;
                 }
             })
     }
+
+    next.addEventListener('click', nextPage);
+    previous.addEventListener('click', previousPage);
+    hide.addEventListener('click', hideHero);
 }
+
+window.addEventListener('load', init);
+
+
+
