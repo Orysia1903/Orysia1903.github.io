@@ -106,20 +106,23 @@ init = () => {
     }
 
     previousPage = () => {
-            if (count > 1) {
-                next.classList.remove('ends');
-                --count;
-            } else {
-                previous.classList.add('ends');
-            }
+        if (count > 1) {
+            next.classList.remove('ends');
+            --count;
+        } 
+
+        if(count == 1){
+            previous.classList.add('ends');
+        }
+
         url = `https://swapi.dev/api/people/?page=${count}`;
         fetch(url)
             .then( (resp) => {
                 return resp.json();
-            }).then( (data) => {
-                for (let i = 0; i < data.results.length; i++) {
-                    showPerson[i].innerHTML = data.results[i].name;
-                }
+                }).then( (data) => {
+                    for (let i = 0; i < data.results.length; i++) {
+                        showPerson[i].innerHTML = data.results[i].name;
+                    }
             })
     }
 
