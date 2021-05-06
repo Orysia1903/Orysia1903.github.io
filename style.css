@@ -3,7 +3,7 @@
     margin: 0; 
 }
 .container {
-    width: 100vw;
+    margin: 0, auto;
     height: 100vh;
     background-image: url(img/background.jpg);
     background-size: cover;
@@ -11,7 +11,7 @@
     flex-direction: row;
     justify-content: center;
     font-family: 'Heebo', sans-serif;
-    font-size: 20px;
+    font-size: 90%;
 }
 .block-left {
     width: 40%;
@@ -23,9 +23,8 @@
     flex-wrap: wrap;
     justify-content: center;
     position: relative;
-    right: 20px;
-    top: 50px;
-    box-sizing: border-box;
+    right: 1%;
+    top: 5%;
 }
 #next,
 #previous {
@@ -65,10 +64,10 @@
 .show-person {
     cursor: pointer;
     font-family: 'Heebo', sans-serif;
-    font-size: 15px;
+    font-size: 120%;
     color: black;
     font-weight: bold;
-    width: 140px;
+    width: 20%;
     height: 80px;
     background-color: rgb(194, 197, 197);
     border-radius: 20px;
@@ -77,9 +76,8 @@
     box-shadow: 2px 3px 4px rgba(242, 236, 236, 0.5);
     margin-right: 15px;
     margin-bottom: 15px;
-    box-sizing: border-box;
     padding: 0;
-    white-space:nowrap;
+    white-space:wrap;
     transition-duration: 300ms;
 }
 .show-person:hover {
@@ -90,21 +88,13 @@
     color: rgb(112, 5, 112);
     font-weight: 800;
 }
-caption {
-    height: 40px;
-    color: blue;
-    border: 1px solid white;
-    padding:10px;
-}
 .hero {
-    width: 80%;
+    width: 30%;
     border-collapse: collapse;
     transform: translateX(-700px);
-    width: 350px;
-    height: 60vh;
     position: absolute;
-    top: 50px;
-    left: 110px;
+    top: 15%;
+    left: 5%;
 }
 .hero tr td,
 caption {
@@ -115,10 +105,11 @@ caption {
     font-family: 'Heebo', sans-serif;
 }
 caption {
-    font-size: 30px;
-    font-weight: bold;
+    color:rgb(255, 161, 216);
+    font-weight: 900;
     text-shadow: 2px 3px 4px rgb(237, 140, 237);
-    height: 50px;
+    height: 40px;
+    padding-top: 6%;
 }
 .hero tr td:first-child {
     width: 30%;
